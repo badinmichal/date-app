@@ -1,0 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #e91e63;
+  --pink-dark: #b0184b;
+  --pink-light: #fde3ec;
+  --text-dark: #3b1224;
+  --text-muted: #8a6b76;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #ffd6e8 0%, #ffb8d9 30%, #d6b8ff 70%, #b8d4ff 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  top: -10%;
+  font-size: 20px;
+  opacity: 0.7;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: #fffaf9;
+  border-radius: 28px;
+  padding: 36px 32px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(176, 24, 75, 0.25), 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.step {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.step.active {
+  display: flex;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pink);
+  margin: 0;
+}
+
+.progress {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.icon-badge {
+  font-size: 26px;
+  background: var(--pink-light);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text-dark);
+  font-size: 26px;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.dog-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 16px rgba(176, 24, 75, 0.18);
+  transform: rotate(-4deg);
+}
+
+.dog-photo-end {
+  transform: rotate(4deg);
+}
+
+.dog-caption {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pink-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  font-family: inherit;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--pink);
+  color: #fff;
+  flex: 1;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--pink-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--text-dark);
+  border: 1px solid #eeddE3;
+  flex: 1;
+}
+
+.btn-ghost:hover {
+  background: #f7eef1;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* neviditeľné miesto v layoute, ktoré len rezervuje priestor po "Nie" tlačidle */
+.no-btn-slot {
+  visibility: hidden;
+  flex: 1;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* skutočné "Nie" tlačidlo - uteká pred kurzorom po celej obrazovke */
+#noBtn0 {
+  position: fixed;
+  z-index: 999;
+  transition: top 0.22s cubic-bezier(.34,1.56,.64,1),
+              left 0.22s cubic-bezier(.34,1.56,.64,1),
+              transform 0.22s ease;
+  white-space: nowrap;
+}
+
+.field {
+  width: 100%;
+  text-align: left;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #f0dde4;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text-dark);
+  background: #fff;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.select-row {
+  display: flex;
+  gap: 8px;
+}
+
+.select-row-time {
+  align-items: center;
+  justify-content: center;
+}
+
+.picker-select {
+  flex: 1;
+  padding: 12px 10px;
+  border-radius: 12px;
+  border: 1.5px solid #f0dde4;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text-dark);
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.picker-select-wide {
+  flex: 1.6;
+}
+
+.picker-select:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.picker-select:disabled {
+  background: #f7eef1;
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.time-colon {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+
+.sparkle {
+  font-size: 28px;
+  margin: 0;
+}
+
+.summary-box {
+  width: 100%;
+  background: var(--pink-light);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-dark);
+  text-align: left;
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .card {
+    padding: 28px 20px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}

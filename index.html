@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pôjdeš so mnou na rande?</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg"></div>
+
+<div class="card" id="card">
+
+  <!-- KROK 0: Otázka -->
+  <section class="step active" id="step0">
+    <p class="eyebrow">malá otázka</p>
+    <h1>Pustíš ma do svojej bubliny?</h1>
+    <p class="subtitle">Nechaj si na to čas. V skutočnosti tu je len jedna správna odpoveď.</p>
+
+    <img src="Untitled.png" alt="čakám na tvoju odpoveď" class="dog-photo">
+    <p class="dog-caption">ja čakajúci kým klikneš na áno</p>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="yesBtn0">Áno, veľmi rada</button>
+      <div class="no-btn-slot" aria-hidden="true">Nie</div>
+    </div>
+    <button class="btn btn-ghost" id="noBtn0">Nie</button>
+  </section>
+
+  <!-- KROK 1: Kedy -->
+  <section class="step" id="step1">
+    <div class="icon-badge">📅</div>
+    <h1>Kedy ti to vyhovuje?</h1>
+    <p class="subtitle">Vyber dátum a čas — postarám sa o zvyšok.</p>
+
+    <div class="field">
+      <label for="dayInput">Dátum</label>
+      <div class="select-row">
+        <select id="dayInput" class="picker-select"></select>
+        <select id="monthInput" class="picker-select picker-select-wide"></select>
+        <select id="yearInput" class="picker-select"></select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="hourInput">Čas</label>
+      <div class="select-row select-row-time">
+        <select id="hourInput" class="picker-select"></select>
+        <span class="time-colon">:</span>
+        <select id="minuteInput" class="picker-select"></select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="planInput">Plán</label>
+      <select id="planInput">
+        <option value="Vykradnutie banky 🏦">🏦 Vykradnutie banky</option>
+        <option value="Večera 🍽️">🍽️ Večera</option>
+        <option value="Aktivita 🎯">🎯 Aktivita</option>
+        <option value="Kávička ☕">☕ Kávička</option>
+        <option value="Prechádzka 🚶">🚶 Prechádzka</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="toStep2">Ďalej →</button>
+  </section>
+
+  <!-- KROK 2: Špeciálna požiadavka -->
+  <section class="step" id="step2">
+    <div class="icon-badge">💭</div>
+    <h1>Máš nejakú špeciálnu požiadavku?</h1>
+    <p class="subtitle">Napíš čokoľvek, na čom ti záleží (voliteľné).</p>
+
+    <div class="field">
+      <label for="requestInput">Špeciálna požiadavka</label>
+      <input type="text" id="requestInput" placeholder="napr. musíš sa zasmiať aspoň na 3 mojich vtipoch 😏">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="backBtn">← Späť</button>
+      <button class="btn btn-primary" id="finishBtn">Je to rande</button>
+    </div>
+  </section>
+
+  <!-- KROK 3: Výsledok -->
+  <section class="step" id="step3">
+    <p class="sparkle">✨</p>
+    <h1>Už niet cesty späť 🌹</h1>
+
+    <div class="summary-box">
+      <div class="summary-row">
+        <span>📅</span>
+        <span id="sumDate">--</span>
+      </div>
+      <div class="summary-row">
+        <span>🕒</span>
+        <span id="sumTime">--</span>
+      </div>
+      <div class="summary-row">
+        <span>💘</span>
+        <span id="sumPlan">--</span>
+      </div>
+      <div class="summary-row" id="sumRequestRow" hidden>
+        <span>📝</span>
+        <span id="sumRequest">--</span>
+      </div>
+    </div>
+
+    <img src="Untitled2.png" alt="šťastný psík" class="dog-photo dog-photo-end">
+    <p class="dog-caption">ja keď si súhlasila</p>
+
+    <button class="btn btn-ghost btn-block" id="backToStep2">← Späť</button>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
