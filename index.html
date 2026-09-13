@@ -26,6 +26,7 @@
       <div class="no-btn-slot" aria-hidden="true">Nie</div>
     </div>
     <button class="btn btn-ghost" id="noBtn0">Nie</button>
+    <button class="btn btn-wait btn-block" id="waitBtn0">Ešte chvíľu počkám ⏳</button>
   </section>
 
   <!-- KROK 1: Kedy -->
@@ -111,7 +112,25 @@
     <button class="btn btn-ghost btn-block" id="backToStep2">← Späť</button>
   </section>
 
+  <!-- KROK 4: Ešte chvíľu počkám -->
+  <section class="step" id="step4">
+    <p class="eyebrow">žiadny stres</p>
+    <h1>Dobre, počkám</h1>
+
+    <img src="waiting.jpg" alt="ja, trpezlivo čakajúci" class="dog-photo" id="waitPhoto">
+    <p class="dog-caption">ja kým máš toho veľa</p>
+
+    <p class="wait-text">
+      Netreba sa nikam ponáhľať - všetko dobré si svoj čas nájde samo.
+    </p>
+    <p class="wait-ps">P.S. nech ti aspoň táto pesnička trochu spríjemní deň.</p>
+
+    <button class="btn btn-ghost btn-block" id="backFromWait">← Späť na výber</button>
+  </section>
+
 </div>
+
+<audio id="bgMusic" src="dreams.mp4" loop preload="auto"></audio>
 
 <script src="script.js"></script>
 </body>

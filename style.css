@@ -189,6 +189,19 @@ h1 {
   width: 100%;
 }
 
+.btn-wait {
+  width: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px dashed #e3c3d0;
+  margin-top: -2px;
+}
+
+.btn-wait:hover {
+  background: var(--pink-light);
+  color: var(--pink-dark);
+}
+
 /* neviditeľné miesto v layoute, ktoré len rezervuje priestor po "Nie" tlačidle */
 .no-btn-slot {
   visibility: hidden;
@@ -310,6 +323,20 @@ h1 {
   color: var(--text-dark);
   text-align: left;
   font-weight: 600;
+}
+
+.wait-text {
+  color: var(--text-dark);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wait-ps {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-style: italic;
+  margin: 0;
 }
 
 @media (max-width: 420px) {

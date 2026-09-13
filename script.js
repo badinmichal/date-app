@@ -48,6 +48,7 @@ const steps = {
   1: document.getElementById('step1'),
   2: document.getElementById('step2'),
   3: document.getElementById('step3'),
+  4: document.getElementById('step4'),
 };
 
 function goToStep(n) {
@@ -150,6 +151,32 @@ noBtn.addEventListener('touchstart', (e) => {
   dodgeNoButton(touch ? touch.clientX : undefined, touch ? touch.clientY : undefined);
 }, { passive: false });
 
+// ---------- "Ešte chvíľu počkám" ----------
+const bgMusic = document.getElementById('bgMusic');
+const waitPhoto = document.getElementById('waitPhoto');
+
+waitPhoto.addEventListener('error', () => {
+  waitPhoto.style.display = 'none';
+}, { once: true });
+
+document.getElementById('waitBtn0').addEventListener('click', () => {
+  trackEvent({
+    event: `zvolila "ešte chvíľu počkám" (${new Date().toLocaleString('sk-SK')})`,
+    noClicks: dodgeCount,
+  });
+  goToStep(4);
+  bgMusic.play().catch(() => {
+    // prehliadač zablokoval automatické prehrávanie so zvukom - skúsi to znova pri prvom kliku
+    document.addEventListener('click', () => bgMusic.play().catch(() => {}), { once: true });
+  });
+});
+
+document.getElementById('backFromWait').addEventListener('click', () => {
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+  goToStep(0);
+});
+
 // ---------- Krok 1: Kedy (dátum a čas cez dropdown selecty, 24-hod formát) ----------
 const dayInput = document.getElementById('dayInput');
 const monthInput = document.getElementById('monthInput');
@@ -200,9 +227,13 @@ function initDateTimePickers() {
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth() + 1;
 
-  // mesiac a rok sú pevne dnešné - dá sa vyberať iba deň v rámci tohto mesiaca
-  fillSelect(monthInput, [{ value: pad2(currentMonth), label: MONTHS[currentMonth - 1] }]);
-  monthInput.disabled = true;
+  // rok je pevne tento rok, mesiac sa dá vyberať od dnešného až po december
+  const monthOptions = [];
+  for (let m = currentMonth; m <= 12; m++) {
+    monthOptions.push({ value: pad2(m), label: MONTHS[m - 1] });
+  }
+  fillSelect(monthInput, monthOptions);
+  monthInput.value = pad2(currentMonth);
 
   fillSelect(yearInput, [{ value: String(currentYear), label: String(currentYear) }]);
   yearInput.disabled = true;
@@ -218,6 +249,9 @@ function initDateTimePickers() {
 
   hourInput.value = '18';
   minuteInput.value = '00';
+
+  // pri zmene mesiaca prepočítaj dostupné dni (v aktuálnom mesiaci nejde vybrať deň pred dneškom)
+  monthInput.addEventListener('change', updateDayOptions);
 }
 
 initDateTimePickers();
